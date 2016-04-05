@@ -1,20 +1,4 @@
-    Project: BT-Beacon
-    Version: v1.0.2016.0405
-    Author: Skoon Studios, LLC
-    Distributed under the terms of the MIT License (details below)
-
-    Description: This program shows off pairing a BLE beacon to an IoT device.
-
-    Hardware List:
-        Raspberry Pi 2
-        XY Beacon
-
-    Implementation:
-        This code available at http://www.github.com/SkoonStudios/IoTLabs/BLE-Pairing
-
-    ******************************************************************************
-
-    The MIT License (MIT)
+The MIT License (MIT)
 
 Copyright (c) 2015 
 

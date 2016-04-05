@@ -1,16 +1,16 @@
     Project: BT-Beacon
-    Version: v1.0.2016.0405
+    Version: v1.0.2016.0406
     Author: Skoon Studios, LLC
     Distributed under the terms of the MIT License (details below)
 
-    Description: This program shows off pairing a BLE beacon to an IoT device.
+    Description: This program shows off sending BLE signal strength data to an Azure IoT Hub.
 
     Hardware List:
         Raspberry Pi 2
         XY Beacon
 
     Implementation:
-        This code available at http://www.github.com/SkoonStudios/IoTLabs/BLE-Pairing
+        This code available at http://www.github.com/SkoonStudios/IoTLabs/BLE-IoTHub
 
     ******************************************************************************
 

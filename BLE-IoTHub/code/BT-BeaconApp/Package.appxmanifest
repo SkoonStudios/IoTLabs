@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="BLE-Lab01.c69d515b-dd54-4d24-bf0c-6e74bb5a74e2" Publisher="CN=robertvs" Version="1.0.0.0" />
+  <Identity Name="BLE-Lab02.c69d515b-dd54-4d24-bf0c-6e74bb5a74e2" Publisher="CN=robertvs" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="c69d515b-dd54-4d24-bf0c-6e74bb5a74e2" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>BT-BeaconApp</DisplayName>
