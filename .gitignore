@@ -2,6 +2,25 @@
 Thumbs.db
 ehthumbs.db
 
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*project.lock.json
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
 # Folder config file
 Desktop.ini
 
