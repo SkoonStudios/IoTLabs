@@ -9,15 +9,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Temperature_IoTHub
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         //Create a constant for pressure at sea level. 
         //This is based on your local sea level pressure (Unit: Hectopascal)
         private const float CLT_SEA_LEVEL_PRESSURE = 1027.3f;
-        private TimeSpan TIMER_TICK = TimeSpan.FromMilliseconds(5000);
+        private TimeSpan TIMER_TICK = TimeSpan.FromMilliseconds(1000);
         private static string CXN_STRING = "<REPLACE>";
 
         //A class which wraps the barometric sensor
@@ -67,12 +64,12 @@ namespace Temperature_IoTHub
 
         private async void OnTimerTick(object sender, object e)
         {
-            float temp = await _ptSensor.ReadTemperature();
+            float temperature = await _ptSensor.ReadTemperature();
             float pressure = await _ptSensor.ReadPreasure();
             float altitude = await _ptSensor.ReadAltitude(CLT_SEA_LEVEL_PRESSURE);
 
             // Write the values to your debug console
-            Debug.WriteLine($"Temperature: {temp.ToString()} deg C");
+            Debug.WriteLine($"Temperature: {temperature.ToString()} deg C");
             Debug.WriteLine($"Pressure: {pressure.ToString()} Pa");
             Debug.WriteLine($"Altitude: {altitude.ToString()} m");
 
@@ -84,7 +81,7 @@ namespace Temperature_IoTHub
                     var obj = new
                     {
                         time = DateTime.UtcNow.ToString("o"),
-                        temperature = temp,
+                        temperature = temperature,
                         pressure = pressure,
                         altitude = altitude,
                     };
