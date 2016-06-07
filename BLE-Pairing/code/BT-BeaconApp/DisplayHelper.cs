@@ -72,9 +72,9 @@ public class DeviceInformationDisplay : INotifyPropertyChanged
         get
         {
             int val = int.MinValue;
-            int.TryParse(deviceInfo.Properties["System.Devices.Aep.SignalStrength"]
-                .ToString(), out val);
-
+            var property = deviceInfo.Properties["System.Devices.Aep.SignalStrength"];
+            if (property != null)
+                int.TryParse(property.ToString(), out val);
             return val;
         }
     }
