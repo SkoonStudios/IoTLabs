@@ -1,0 +1,144 @@
+﻿<Page
+    x:Class="IOT_FaceAPI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:IOT_FaceAPI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <local:StringFormatConverter x:Key="PercentageStringFormatConverter" StringFormat=" {0:P2}"/>
+    </Page.Resources>
+
+    <Grid x:Name="rootLayout" Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                   Text="AI FACIAL RECOGNITION" FontSize="48" FontStyle="Normal" FontWeight="Bold" Foreground="Red"/>
+
+        <CaptureElement x:Name="cameraPreview" Grid.Row="1" Grid.Column="0" 
+                        Stretch="Uniform" Margin="35" />
+
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="35">
+            <Image x:Name="imgPhoto" Stretch="Uniform" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Polyline x:Name="shpFrame" Stroke="Red" StrokeThickness="3" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" MinHeight="550" Margin="10" BorderBrush="White" BorderThickness="2" CornerRadius="12" Padding="5" VerticalAlignment="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="RESULTS" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="24" TextDecorations="Underline" Margin="0,20" />
+
+            <TextBlock Text="status:" Grid.Row ="1" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="1" Grid.Column="1" FontSize="16" Foreground="#FF27B853" Margin="5"
+                       Text="{x:Bind ViewModel.RequestState, Mode=OneWay}" />
+
+            <TextBlock Text="gender:" Grid.Row ="2" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="2" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Gender, Mode=OneWay}" />
+
+            <TextBlock Text="age:" Grid.Row ="3" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="3" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Age, Mode=OneWay}" />
+
+            <TextBlock Text="hair color:" Grid.Row ="4" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="4" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.HairColor, Mode=OneWay}" />
+
+            <TextBlock Text="glasses:" Grid.Row ="5" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="5" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Glasses, Mode=OneWay}" />
+
+            <TextBlock Text="makeup:" Grid.Row ="6" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="6" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.Makeup, Mode=OneWay}" />
+
+            <TextBlock Text="facial hair:" Grid.Row ="7" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" Margin="5" Padding="5,0" />
+            <TextBlock Grid.Row ="7" Grid.Column="1" FontSize="16" Foreground="#FF1EA4ED" Margin="5"
+                       Text="{x:Bind ViewModel.CurrentFace.FacialHair, Mode=OneWay}" />
+
+            <TextBlock Text="EMOTION" Grid.Row ="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Margin="5" Padding="5,0" />
+            <Grid Grid.Row="8" Grid.Column="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="anger:" Grid.Row ="0" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Anger, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="0" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="contempt:" Grid.Row ="1" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Contempt, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="disgust:" Grid.Row ="2" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Disgust, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="2" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="fear:" Grid.Row ="3" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Fear, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="3" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="happiness:" Grid.Row ="4" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Happiness, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="4" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="neutral:" Grid.Row ="5" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Neutral, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="5" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="sadness:" Grid.Row ="6" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Sadness, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="6" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+
+                <TextBlock Text="surprise:" Grid.Row ="7" Grid.Column="0" HorizontalAlignment="Right" FontSize="12" Margin="5" Padding="5,0" />
+                <TextBlock Text="{x:Bind ViewModel.CurrentFace.Face.FaceAttributes.Emotion.Surprise, Converter={StaticResource PercentageStringFormatConverter},Mode=OneWay}" 
+                           Grid.Row="7" Grid.Column="1" FontSize="12" Foreground="#FF1EA4ED" Margin="5"/>
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="5" Padding="10">
+            <Button x:Name="cmdTakePicture" Content="take picture" HorizontalAlignment="Center" FontSize="24" Background="Transparent" BorderBrush="White" Click="CmdTakePicture_Click" />
+            <Button x:Name="cmdReset" Content="clear results" Visibility="Collapsed"  HorizontalAlignment="Center" FontSize="24" Background="Transparent" BorderBrush="White" Click="CmdReset_Click" />
+            <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}" FontSize="18" Foreground="#FFCAE415" Margin="20" MaxLines="4" TextWrapping="WrapWholeWords"/>
+        </StackPanel>
+
+        <Image Source="/Assets/iot_logo.png" Grid.Row="2" Grid.Column="2" Margin="20"/>
+
+    </Grid>
+</Page>
